@@ -16,7 +16,7 @@ def main():
 
 @app.post("/notion", status_code=201)
 def post_notion(new_noted: NewNotedSchema, session: Session = Depends(get_session)):
-    notion = NotionOrm(secret_fraze=new_noted.secret_fraze, message=new_noted.message)
+    notion = NotionOrm(password=new_noted.password, message=new_noted.message)
     session.add(notion)
     session.commit()
     session.refresh(notion)
